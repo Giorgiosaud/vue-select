@@ -326,6 +326,7 @@
         <input
                 ref="search"
                 v-model="search"
+                @click="dropdownOpen= !dropdownOpen"
                 @keydown.delete="maybeDeleteValue"
                 @keyup.esc="onEscape"
                 @keydown.up.prevent="typeAheadUp"
@@ -333,6 +334,7 @@
                 @keydown.enter.prevent="typeAheadSelect"
                 @keydown.tab="onTab"
                 @blur="onSearchBlur"
+                @change="onSearchBlur"
                 @focus="onSearchFocus"
                 type="search"
                 class="form-control"
@@ -862,7 +864,6 @@
       clearSelection() {
         this.mutableValue = this.multiple ? [] : null
       },
-
       /**
        * Called from this.select after each selection.
        * @param  {Object|String} option
